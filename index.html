@@ -28,6 +28,8 @@
             border: none;
             cursor: pointer;
             border-radius: 10px;
+            font-weight: bold;
+            white-space: nowrap;
         }
         .yes {
             background-color: rgb(49, 207, 49);
@@ -37,25 +39,24 @@
             background-color: rgb(230, 36, 36);
             color: white;
         }
-        /* Removed hover scale effect */
     </style>
     <script>
         let noClickCount = 0;
-        const noButtonTexts = ["No", "Sure na ba?", "Maysa", "Ganiyanan", "TAPON KO TO", "Okay :< "];
-        
+        const noButtonTexts = ["No", "Sure na ba?", "Maysa", "Ganiyanan", "TAPON KO TO", "WALA KA TAKAS SAKEN BOI", "Okay :< ", "SURE SURE SURE NA?", "WAG"];
+
         function increaseYesButton() {
             let yesButton = document.querySelector('.yes');
             let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
             yesButton.style.fontSize = (currentSize * 1.5) + 'px';
         }
-        
+
         function changeGif() {
             let gif = document.querySelector('img');
-            if (noClickCount === 5) {
-                gif.src = "https://media.tenor.com/RJgIui1E_2QAAAAi/teddy-bear.gif"; // New GIF URL
+            if (noClickCount === 6) {
+                gif.src = "https://media.tenor.com/RJgIui1E_2QAAAAi/teddy-bear.gif";
             }
         }
-        
+
         function handleNoButton() {
             noClickCount++;
             changeGif();
@@ -64,10 +65,19 @@
                 noButton.textContent = noButtonTexts[noClickCount];
             }
         }
-        
+
         function handleYesButton() {
+            let yesButton = document.querySelector('.yes');
+            let noButton = document.querySelector('.no');
             let gif = document.querySelector('img');
-            gif.src = "https://media1.tenor.com/m/fMDB0tWSj_YAAAAd/milk-and-mocha-bear.gif"; // New GIF URL on Yes
+
+            // Reset buttons to their original state
+            yesButton.style.fontSize = "1.5em";
+            noButton.textContent = "No";
+            noClickCount = 0;
+
+            // Change the GIF and text
+            gif.src = "https://media1.tenor.com/m/fMDB0tWSj_YAAAAd/milk-and-mocha-bear.gif";
             document.querySelector('h1').textContent = "YEYYY!";
         }
     </script>
