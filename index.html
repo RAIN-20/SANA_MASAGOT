@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Proposal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: rgb(255, 255, 255);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: rgb(49, 207, 49);
+            color: white;
+        }
+        .no {
+            background-color: rgb(230, 36, 36);
+            color: white;
+        }
+        /* Removed hover scale effect */
+    </style>
+    <script>
+        let noClickCount = 0;
+        const noButtonTexts = ["No", "Sure na ba?", "Maysa", "Ganiyanan", "TAPON KO TO", "Okay :< "];
+        
+        function increaseYesButton() {
+            let yesButton = document.querySelector('.yes');
+            let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize * 1.5) + 'px';
+        }
+        
+        function changeGif() {
+            let gif = document.querySelector('img');
+            if (noClickCount === 5) {
+                gif.src = "https://media.tenor.com/RJgIui1E_2QAAAAi/teddy-bear.gif"; // New GIF URL
+            }
+        }
+        
+        function handleNoButton() {
+            noClickCount++;
+            changeGif();
+            let noButton = document.querySelector('.no');
+            if (noClickCount < noButtonTexts.length) {
+                noButton.textContent = noButtonTexts[noClickCount];
+            }
+        }
+        
+        function handleYesButton() {
+            let gif = document.querySelector('img');
+            gif.src = "https://media1.tenor.com/m/fMDB0tWSj_YAAAAd/milk-and-mocha-bear.gif"; // New GIF URL on Yes
+            document.querySelector('h1').textContent = "YEYYY!";
+        }
+    </script>
+</head>
+<body>
+    <img src="https://media1.tenor.com/m/al4a1pG1f8YAAAAC/jump-bear.gif" alt="Cute Valentine's Gif" width="300">
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="handleYesButton()">Yes</button>
+        <button class="no" onclick="increaseYesButton(); handleNoButton();">No</button>
+    </div>
+</body>
+</html>
